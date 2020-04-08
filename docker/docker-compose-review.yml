@@ -141,6 +141,7 @@ services:
       #- "traefik.http.routers.app.tls.certresolver=${CERT_RESOLVER_B}"
       - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
       - "traefik.http.services.app.loadbalancer.server.port=80"
+      - "traefik.http.services.app.loadbalancer.sticky=true"
     
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
