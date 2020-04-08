@@ -7,6 +7,8 @@ version: '3.7'
 ##  Note: this file is configured for Swarm Mode                                                             ##
 ##                                                                                                           ##
 ## For more details head to https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
+## `docker stack deploy --with-registry-auth --resolve-image always --prune \                                ##
+##  --compose-file=docker-compose-review.yml mattermost`                                                     ##
 ###############################################################################################################
 
 x-default-opts:
@@ -25,29 +27,29 @@ services:
     # Main configuration set by traefik.yml
 
     deploy:
-    mode: replicated
-    replicas: 1
-    placement:
+      mode: replicated
+      replicas: 1
+      placement:
         constraints:
-        - "node.labels.traefik==true"
+          - "node.labels.traefik==true"
     
     restart_policy:
         condition: any
         delay: 2s
     
     labels:
-        - "traefik.enable=true"
-        - "traefik.docker.network=traefik-public"
-        - "traefik.http.routers.proxy.entrypoints=traefik,web-secured"
-        - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
-        - "traefik.http.routers.proxy.service=api@internal"
-        - "traefik.http.routers.proxy.tls=true"
-        - "traefik.http.routers.proxy.tsl.certresolver=${CERT_RESOLVER_A}"
-        - "traefik.http.services.proxy.loadbalancer.server.port=8080"
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.proxy.entrypoints=traefik,web-secured"
+      - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
+      - "traefik.http.routers.proxy.service=api@internal"
+      - "traefik.http.routers.proxy.tls=true"
+      - "traefik.http.routers.proxy.tsl.certresolver=${CERT_RESOLVER_A}"
+      - "traefik.http.services.proxy.loadbalancer.server.port=8080"
 
-        ## Authentication Configuration ##
-        - "traefik.http.routers.proxy.middlewares=authTraefik"
-        - "traefik.http.middlewares.authTraefik.basicauth.users=${USERNAME_PASSWORD}"
+      ## Authentication Configuration ##
+      - "traefik.http.routers.proxy.middlewares=authTraefik"
+      - "traefik.http.middlewares.authTraefik.basicauth.users=${PROXY_USERNAME_PASSWORD}"
     
     ports:
     - published: 80     # HTTP port to be redirected to HTTPS
@@ -108,7 +110,34 @@ services:
   # Mattermost Application. Use official Mattermost prod-app image
   app:
     image: mattermost/mattermost-prod-app:5.21.0
-  
+
+    environment: 
+      - DB_HOST=mattermost_db
+      # talk to the port within the overlay network
+      # without (over) exposing ports
+      - DB_PORT_NUMBER=5432
+      - MM_USERNAME=${MM_USER}
+      - MM_PASSWORD=${MM_USER_PASSWORD}
+      - MM_DBNAME=mattermost
+      # pass the edition to be used, default is enterprise
+      # setting this env var will make the app use the team edition
+      - edition=team
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    restart_policy:
+      condition: on-failure
+      delay: 3s
+      
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.app.entrypoints=web-secured"
+      - "traefik.http.routers.app.rule=HOST(`${HOST_MATTERMOST}`)"
+      - "traefik.http.routers.app.tls=true"
+      - "traefik.http.services.app.loadbalancer.server.port=80"
     
 
 ###############################################################################################################
