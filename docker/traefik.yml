@@ -1,0 +1,61 @@
+##############################################
+##  Traefik Static Configuration            ##
+##  version 0.0.1 April 2020                ##
+##  place in /etc/traefik/                  ##
+############################################## 
+
+global:
+    checkNewVersion: false
+    sendAnonymousUsage: false
+    
+  # Default Entry Points
+  entryPoints:
+    web:
+      address: ":80"
+      http:
+        redirections:
+          entrypoint:
+            to: web-secured
+            scheme: https
+  
+    web-secured:
+      address: ":443"
+  
+  # Docker Configuration
+  providers:
+    docker:
+      swarmMode: true
+      exposedByDefault: true
+      network: traefik-public
+    
+    file:
+      directory: "/etc/traefik"
+      watch: true
+  
+  # API/Dashboard
+  api:
+    dashboard: true
+    debug: false
+  
+  # Access Log
+  accessLog: 
+    filePath: "/etc/traefik/logs/access.log"
+    bufferingSize: 100
+  
+  # Let's Encrypt Configuration
+  certificateResolvers:
+    cfg-staging-resolver:
+      acme:
+        email: "ademeglio@gmail.com"
+        storage: "/certs/acme/acme.json"
+        tlsChallenge: {}
+        # Let's Encrypt Staging Server
+        caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+    cfg-production-resolver:
+      acme:
+        email: "ademeglio@gmail.com"
+        storage: "/certs/acme/acme-production.json"
+        tlsChallenge: {}
+        # Let's Encrypt Production Server
+        caServer: "https://acme-v02.api.letsencrypt.org/directory"
+  

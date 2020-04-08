@@ -44,7 +44,8 @@ services:
       - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
       - "traefik.http.routers.proxy.service=api@internal"
       - "traefik.http.routers.proxy.tls=true"
-      - "traefik.http.routers.proxy.tsl.certresolver=${CERT_RESOLVER_A}"
+      #- "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
+      - "traefik.http.routers.proxy.tls.certresolver=cfg-staging-resolver"
       - "traefik.http.services.proxy.loadbalancer.server.port=8080"
 
       ## Authentication Configuration ##
@@ -137,6 +138,8 @@ services:
       - "traefik.http.routers.app.entrypoints=web-secured"
       - "traefik.http.routers.app.rule=HOST(`${HOST_MATTERMOST}`)"
       - "traefik.http.routers.app.tls=true"
+      #- "traefik.http.routers.app.tls.certresolver=${CERT_RESOLVER_B}"
+      - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
       - "traefik.http.services.app.loadbalancer.server.port=80"
     
 
