@@ -66,7 +66,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - type: volume
         source: traefik-certs
-        target: certs
+        target: /certs
       - type: volume
         source: traefik-configs
         target: /etc/traefik
@@ -74,39 +74,39 @@ services:
     networks:
       - traefik-public
   
-    # Use official Mattermost prod-db image
-    db:
-      image: mattermost/mattermost-prod-db
+  # Use official Mattermost prod-db image
+  db:
+    image: mattermost/mattermost-prod-db
 
-      environment:
-        - POSTGRES_USER=${MM_DB_USER}
-        - POSTGRES_PASSWORD=${MM_DB_USER_PASSWORD}
-        - POSTGRES_DB=mattermost
-        # uncomment the following to enable backup
-        #- AWS_ACCESS_KEY_ID=XXXX
-        #- AWS_SECRET_ACCESS_KEY=XXXX
-        #- WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
-        #- AWS_REGION=us-east-1
+    environment:
+      - POSTGRES_USER=${MM_DB_USER}
+      - POSTGRES_PASSWORD=${MM_DB_USER_PASSWORD}
+      - POSTGRES_DB=mattermost
+      # uncomment the following to enable backup
+      #- AWS_ACCESS_KEY_ID=XXXX
+      #- AWS_SECRET_ACCESS_KEY=XXXX
+      #- WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
+      #- AWS_REGION=us-east-1
 
-      deploy:
-        mode: replicated
-        replicas: 1
-        placement:
-          constraints:
-            - "node.labels.traefik==true"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - "node.labels.traefik==true"
       
-        restart_policy:
-          condition: on-failure
-          delay: 2s
+      restart_policy:
+        condition: on-failure
+        delay: 2s
     
-      volumes:
-        - /etc/localtime:/etc/localtime:ro
-        - type: volume
-          source: mattermost-db
-          target: /var/lib/postgresql/Database
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - type: volume
+        source: mattermost-db
+       target: /var/lib/postgresql/Database
 
-      networks:
-        - mattermost-db
+    networks:
+      - mattermost-db
   
   # Mattermost Application. Use official Mattermost prod-app image
   app:
@@ -142,6 +142,15 @@ services:
       - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
       - "traefik.http.services.app.loadbalancer.server.port=80"
     
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - type: volume
+        source: mattermost-data
+        target: /mattermost/:rw
+    
+    networks:
+      - traefik-public
+      - mattermost-db
 
 ###############################################################################################################
 ##  System                                                                                                   ##
