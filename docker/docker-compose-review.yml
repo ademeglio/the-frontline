@@ -1,21 +1,23 @@
 version: '3.7'
 
-###############################################################################################################
-##  The Frontline Mattermost-0.0.1 April 2020                                                                ##
-##  REVIEW CONFIGURATION                                                                                     ##
-##  A Can't Stop Columbus Project                                                                            ##
-##  Note: this file is configured for Swarm Mode                                                             ##
-##                                                                                                           ##
-## For more details head to https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
-## `docker stack deploy --with-registry-auth --resolve-image always --prune \                                ##
-##  --compose-file=docker-compose-review.yml mattermost`                                                     ##
-###############################################################################################################
+######################################################################################
+##  The Frontline Mattermost-0.0.1 April 2020                                       ##
+##  REVIEW CONFIGURATION                                                            ##
+##  A Can't Stop Columbus Project                                                   ##
+##  Note: this file is configured for Swarm Mode                                    ##
+##                                                                                  ##
+## For more details head to                                                         ##
+## https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
+##                                                                                  ##
+## `docker stack deploy --with-registry-auth --resolve-image always --prune \       ##
+##  --compose-file=docker-compose-review.yml mattermost`                            ##
+######################################################################################
 
 x-default-opts:
   &default-opts
     logging:
-    options:
-      max-size: "1m"
+      options:
+       max-size: "1m"
 
 services:
 
@@ -33,24 +35,24 @@ services:
         constraints:
           - "node.labels.traefik==true"
     
-    restart_policy:
+      restart_policy:
         condition: any
         delay: 2s
     
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.proxy.entrypoints=traefik,web-secured"
-      - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
-      - "traefik.http.routers.proxy.service=api@internal"
-      - "traefik.http.routers.proxy.tls=true"
-      #- "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
-      - "traefik.http.routers.proxy.tls.certresolver=cfg-staging-resolver"
-      - "traefik.http.services.proxy.loadbalancer.server.port=8080"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.http.routers.proxy.entrypoints=web-secured"
+        #- "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
+        - "traefik.http.routers.proxy.rule=Host(`proxy.frontlineinfo.test`)"
+        - "traefik.http.routers.proxy.service=api@internal"
+        - "traefik.http.routers.proxy.tls=true"
+        #- "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
+        - "traefik.http.services.proxy.loadbalancer.server.port=8080"
 
-      ## Authentication Configuration ##
-      - "traefik.http.routers.proxy.middlewares=authTraefik"
-      - "traefik.http.middlewares.authTraefik.basicauth.users=${PROXY_USERNAME_PASSWORD}"
+        ## Authentication Configuration ##
+#        - "traefik.http.routers.proxy.middlewares=authTraefik"
+#        - "traefik.http.middlewares.authTraefik.basicauth.users=${PROXY_USERNAME_PASSWORD}"
     
     ports:
       - published: 80   # HTTP port to be redirected to HTTPS
@@ -96,14 +98,14 @@ services:
           - "node.labels.traefik==true"
       
       restart_policy:
-        condition: on-failure
+        condition: any
         delay: 2s
     
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - type: volume
         source: mattermost-db
-       target: /var/lib/postgresql/Database
+        target: /var/lib/postgresql/Database
 
     networks:
       - mattermost-db
@@ -128,9 +130,13 @@ services:
       mode: replicated
       replicas: 1
 
-    restart_policy:
-      condition: on-failure
-      delay: 3s
+      placement:
+        constraints:
+          - "node.labels.traefik==true"
+
+      restart_policy:
+        condition: any
+        delay: 3s
       
     labels:
       - "traefik.enable=true"
@@ -153,9 +159,9 @@ services:
       - traefik-public
       - mattermost-db
 
-###############################################################################################################
-##  System                                                                                                   ##
-###############################################################################################################
+######################################################################################
+##  System                                                                          ##
+######################################################################################
 
 networks:
   # External public network
@@ -173,4 +179,6 @@ volumes:
     traefik-configs:
       external: true
     mattermost-db:
+      external: true
+    mattermost-data:
       external: true
