@@ -43,11 +43,11 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.http.routers.proxy.entrypoints=web-secured"
-        #- "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
+#        - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
         - "traefik.http.routers.proxy.rule=Host(`proxy.frontlineinfo.test`)"
         - "traefik.http.routers.proxy.service=api@internal"
         - "traefik.http.routers.proxy.tls=true"
-        #- "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
+#        - "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
         - "traefik.http.services.proxy.loadbalancer.server.port=8080"
 
         ## Authentication Configuration ##
@@ -81,8 +81,8 @@ services:
     image: mattermost/mattermost-prod-db
 
     environment:
-      - POSTGRES_USER=${MM_DB_USER}
-      - POSTGRES_PASSWORD=${MM_DB_USER_PASSWORD}
+      - POSTGRES_USER=mattermost #${MM_USER}
+      - POSTGRES_PASSWORD=mattermost #${MM_USER_PASSWORD}
       - POSTGRES_DB=mattermost
       # uncomment the following to enable backup
       #- AWS_ACCESS_KEY_ID=XXXX
@@ -103,9 +103,9 @@ services:
     
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - type: volume
-        source: mattermost-db
-        target: /var/lib/postgresql/Database
+#      - type: volume
+#        source: mattermost-db
+#        target: /var/lib/postgresql/Database
 
     networks:
       - mattermost-db
@@ -119,8 +119,8 @@ services:
       # talk to the port within the overlay network
       # without (over) exposing ports
       - DB_PORT_NUMBER=5432
-      - MM_USERNAME=${MM_USER}
-      - MM_PASSWORD=${MM_USER_PASSWORD}
+      - MM_USERNAME=mattermost #${MM_USER}
+      - MM_PASSWORD=mattermost #${MM_USER_PASSWORD}
       - MM_DBNAME=mattermost
       # pass the edition to be used, default is enterprise
       # setting this env var will make the app use the team edition
@@ -138,22 +138,23 @@ services:
         condition: any
         delay: 3s
       
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.app.entrypoints=web-secured"
-      - "traefik.http.routers.app.rule=HOST(`${HOST_MATTERMOST}`)"
-      - "traefik.http.routers.app.tls=true"
-      #- "traefik.http.routers.app.tls.certresolver=${CERT_RESOLVER_B}"
-      - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
-      - "traefik.http.services.app.loadbalancer.server.port=80"
-      - "traefik.http.services.app.loadbalancer.sticky=true"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.http.routers.app.entrypoints=web-secured"
+#        - "traefik.http.routers.app.rule=HOST(`${HOST_MATTERMOST}`)"
+        - "traefik.http.routers.app.rule=Host(`mattermost.frontlineinfo.test`)"
+        - "traefik.http.routers.app.tls=true"
+#        - "traefik.http.routers.app.tls.certresolver=${CERT_RESOLVER_B}"
+        - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
+        - "traefik.http.services.app.loadbalancer.server.port=8000"
+        - "traefik.http.services.app.loadbalancer.sticky=true"
     
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - type: volume
-        source: mattermost-data
-        target: /mattermost/:rw
+#      - type: volume
+#        source: mattermost-data
+#        target: /mattermost/:rw
     
     networks:
       - traefik-public
