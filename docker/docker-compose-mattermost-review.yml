@@ -4,7 +4,9 @@ version: '3.7'
 ##  The Frontline Mattermost-0.0.1 April 2020                                       ##
 ##  REVIEW CONFIGURATION                                                            ##
 ##  A Can't Stop Columbus Project                                                   ##
-##  Note: this file is configured for Swarm Mode                                    ##
+##  Notes:                                                                          ##
+##    * this file is configured on Docker in Swarm Mode                             ##
+##    * this file is also configured to connect to Traefik reverse proxy            ## 
 ##                                                                                  ##
 ## For more details head to                                                         ##
 ## https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
@@ -21,61 +23,6 @@ x-default-opts:
 
 services:
 
-  # Reverse Proxy Service (Traefik 2.x)
-  proxy:
-    <<: *default-opts
-    image: traefik:v2.2.0
-
-    # Main configuration set by traefik.yml
-
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - "node.labels.traefik==true"
-    
-      restart_policy:
-        condition: any
-        delay: 2s
-    
-      labels:
-        - "traefik.enable=true"
-        - "traefik.docker.network=traefik-public"
-        - "traefik.http.routers.proxy.entrypoints=web-secured"
-#        - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
-        - "traefik.http.routers.proxy.rule=Host(`proxy.frontlineinfo.test`)"
-        - "traefik.http.routers.proxy.service=api@internal"
-        - "traefik.http.routers.proxy.tls=true"
-#        - "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
-        - "traefik.http.services.proxy.loadbalancer.server.port=8080"
-
-        ## Authentication Configuration ##
-#        - "traefik.http.routers.proxy.middlewares=authTraefik"
-#        - "traefik.http.middlewares.authTraefik.basicauth.users=${PROXY_USERNAME_PASSWORD}"
-    
-    ports:
-      - published: 80   # HTTP port to be redirected to HTTPS
-        target: 80
-        protocol: tcp
-        mode: host
-      - published: 443  # HTTPS port
-        target: 443
-        protocol: tcp
-        mode: host
-    
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - type: volume
-        source: traefik-certs
-        target: /certs
-      - type: volume
-        source: traefik-configs
-        target: /etc/traefik
-    
-    networks:
-      - traefik-public
-  
   # Use official Mattermost prod-db image
   db:
     image: mattermost/mattermost-prod-db
@@ -174,12 +121,8 @@ networks:
     external: true
     name: mattermost-db
 
-volumes: 
-    traefik-certs:
-      external: true
-    traefik-configs:
-      external: true
-    mattermost-db:
-      external: true
-    mattermost-data:
-      external: true
+volumes:
+  mattermost-db:
+    external: true
+  mattermost-data:
+    external: true
