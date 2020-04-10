@@ -1,0 +1,146 @@
+version: '3.7'
+
+#####################################################################################
+##  The Frontline Mattermost-0.0.1 April 2020                                       ##
+##  REVIEW CONFIGURATION                                                            ##
+##  A Can't Stop Columbus Project                                                   ##
+##  Notes:                                                                          ##
+##    * this file is configured on Docker in Swarm Mode                             ##
+##    * this file is also configured to connect to Traefik reverse proxy            ## 
+##    * MAKE SURE YOU UPDATE THE PROXY HOST UNDER APP LABELS                        ##
+## For more details head to                                                         ##
+## https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
+##                                                                                  ##
+## `docker stack deploy --with-registry-auth --resolve-image always --prune \       ##
+##  --compose-file=docker-compose-review.yml mattermost`                            ##
+#####################################################################################
+
+x-default-opts:
+  &default-opts
+    logging:
+      options:
+       max-size: "1m"
+
+services:
+
+# Use official Mattermost prod-db image
+  db:
+    image: mattermost/mattermost-prod-db
+
+    environment:
+      - POSTGRES_USER=mattermost #${MM_USER}
+      - POSTGRES_PASSWORD=mattermost #${MM_USER_PASSWORD}
+      - POSTGRES_DB=mattermost
+      # uncomment the following to enable backup
+      #- AWS_ACCESS_KEY_ID=XXXX
+      #- AWS_SECRET_ACCESS_KEY=XXXX
+      #- WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
+      #- AWS_REGION=us-east-1
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - "node.labels.traefik==true"
+      
+      restart_policy:
+        condition: any
+        delay: 2s
+    
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - type: volume
+        source: mattermost-db
+        target: /var/lib/postgresql/data
+
+    networks:
+      - mattermost-db
+  
+# Mattermost Application. Use official Mattermost prod-app image
+  app:
+    image: mattermost/mattermost-prod-app:5.21.0
+
+    environment: 
+      - DB_HOST=mattermost_db
+      # talk to the port within the overlay network
+      # without (over) exposing ports
+      - DB_PORT_NUMBER=5432
+      - MM_USERNAME=mattermost #${MM_USER}
+      - MM_PASSWORD=mattermost #${MM_USER_PASSWORD}
+      - MM_DBNAME=mattermost
+      # pass the edition to be used, default is enterprise
+      # setting this env var will make the app use the team edition
+      - edition=team
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+      placement:
+        constraints:
+          - "node.labels.traefik==true"
+
+      restart_policy:
+        condition: any
+        delay: 3s
+      
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.http.routers.app.entrypoints=web-secured"
+        ######################################### UPDATE HOST ####################
+        - "traefik.http.routers.app.rule=Host(`mattermost.frontlineinfo.test`)" ##
+        ##########################################################################
+        - "traefik.http.routers.app.tls=true"
+        - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
+#        - "traefik.http.routers.app.tls.certresolver=cfg-production-resolver"
+        - "traefik.http.services.app.loadbalancer.server.port=8000"
+        - "traefik.http.services.app.loadbalancer.passhostheader=true"
+        - "traefik.http.services.app.loadbalancer.sticky=true"
+    
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - type: volume
+        source: mattermost-config
+        target: /mattermost/config
+      - type: volume
+        source: mattermost-data
+        target: /mattermost/data
+      - type: volume
+        source: mattermost-logs
+        target: /mattermost/logs
+      - type: volume
+        source: mattermost-plugins
+        target: /mattermost/plugins
+
+    networks:
+      - traefik-public
+      - mattermost-db
+
+#####################################################################################
+##  System
+##        
+#####################################################################################
+
+networks:
+  # External public network
+  traefik-public:
+    external: true
+    name: traefik-public
+  # Internal network APP <> Database
+  mattermost-db:
+    external: true
+    name: mattermost-db
+
+volumes:
+  mattermost-db:
+    external: true
+  mattermost-config:
+    external: true
+  mattermost-data:
+    external: true
+  mattermost-logs:
+    external: true
+  mattermost-plugins:
+    external: true
