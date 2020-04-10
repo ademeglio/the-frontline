@@ -4,8 +4,11 @@ version: '3.7'
 ##  The Frontline Reverse Proxy-0.0.1 April 2020                                    ##
 ##  REVIEW CONFIGURATION                                                            ##
 ##  A Can't Stop Columbus Project                                                   ##
+##  Notes:                                                                          ##
 ##    * this file is configured on Docker in Swarm Mode                             ##
-##    * Traefik is configured to use a file provider for main configurations        ## 
+##    * Traefik is configured to use a file provider for main configurations        ##
+##    * MAKE SURE YOU UPDATE THE PROXY HOST UNDER APP LABELS                        ##
+##                                                                                  ## 
 ## For more details head to                                                         ##
 ## https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
 ##                                                                                  ##
@@ -43,11 +46,13 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.http.routers.proxy.entrypoints=web-secured"
-#        - "traefik.http.routers.proxy.rule=HOST(`${HOST_TRAEFIK}`)"
-        - "traefik.http.routers.proxy.rule=Host(`proxy.frontlineinfo.test`)"
+        ######################################### UPDATE HOST #################
+        - "traefik.http.routers.proxy.rule=Host(`proxy.frontlineinfo.test`)" ##
+        #######################################################################
         - "traefik.http.routers.proxy.service=api@internal"
         - "traefik.http.routers.proxy.tls=true"
-#        - "traefik.http.routers.proxy.tls.certresolver=${CERT_RESOLVER_A}"
+        - "traefik.http.routers.proxy.tls.certresolver=cfg-staging-resolver"
+#        - "traefik.http.routers.proxy.tls.certresolver=cfg-production-resolver"
         - "traefik.http.services.proxy.loadbalancer.server.port=8080"
 
         ## Authentication Configuration ##
