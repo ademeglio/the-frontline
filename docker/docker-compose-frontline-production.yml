@@ -55,7 +55,7 @@ services:
         window: 120s
     
       labels:
-        - "com.frontlineinfo.db: "As of 4/14/2020 Postgres v9.4"
+        - "com.frontlineinfo.db=As of 4/14/2020 Postgres v9.4"
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
