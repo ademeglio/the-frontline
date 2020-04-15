@@ -64,7 +64,7 @@ services:
         target: /var/lib/postgresql/data
 
     networks:
-      - mattermost-db
+      - frontline-db
   
 # Mattermost Application. Use official Mattermost prod-app image
   mm-app:
@@ -131,7 +131,7 @@ services:
 
     networks:
       - traefik-public
-      - mattermost-db
+      - frontline-db
 
 #####################################################################################
 ##  System
@@ -144,9 +144,9 @@ networks:
     external: true
     name: traefik-public
   # Internal network APP <> Database
-  mattermost-db:
+  frontline-db:
     external: true
-    name: mattermost-db
+    name: frontline-db
 
 volumes:
   mattermost-db:
