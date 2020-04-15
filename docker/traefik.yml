@@ -5,8 +5,8 @@
 ############################################## 
 
 global:
-    checkNewVersion: false
-    sendAnonymousUsage: false
+  checkNewVersion: false
+  sendAnonymousUsage: false
     
 # Default Entry Points
 entryPoints:
@@ -44,15 +44,15 @@ accessLog:
   bufferingSize: 100
   
 # Let's Encrypt Configuration
-certificateResolvers:
-  cfg-staging-resolver:
+certificatesResolvers:
+  cfc-staging-resolver:
     acme:
       email: "ademeglio@gmail.com"
       storage: "/certs/acme/acme.json"
       tlsChallenge: {}
       # Let's Encrypt Staging Server
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-  cfg-production-resolver:
+  cfc-production-resolver:
     acme:
       email: "ademeglio@gmail.com"
       storage: "/certs/acme/acme-production.json"
