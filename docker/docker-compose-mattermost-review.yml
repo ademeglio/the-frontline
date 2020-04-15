@@ -1,7 +1,7 @@
 version: '3.7'
 
 #####################################################################################
-##  The Frontline Mattermost-0.0.1 April 2020                                       ##
+##  The Frontline Mattermost-0.0.2 April 2020                                       ##
 ##  REVIEW CONFIGURATION                                                            ##
 ##  A Can't Stop Columbus Project                                                   ##
 ##  Notes:                                                                          ##
@@ -28,25 +28,31 @@ services:
     image: mattermost/mattermost-prod-db
 
     environment:
-      - POSTGRES_USER=mattermost #${MM_USER}
-      - POSTGRES_PASSWORD=mattermost #${MM_USER_PASSWORD}
-      - POSTGRES_DB=mattermost
+      POSTGRES_USER: mattermost
+      POSTGRES_PASSWORD: /run/secrets/db_password
+      POSTGRES_DB: mattermost
       # uncomment the following to enable backup
       #- AWS_ACCESS_KEY_ID=XXXX
       #- AWS_SECRET_ACCESS_KEY=XXXX
       #- WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
       #- AWS_REGION=us-east-1
+    
+    secrets:
+      - db_password
 
     deploy:
       mode: replicated
       replicas: 1
       placement:
         constraints:
-          - "node.labels.traefik==true"
+          - "node.labels.mattermost==true"
+#          - "node.role==worker"
       
       restart_policy:
-        condition: any
-        delay: 2s
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -62,16 +68,19 @@ services:
     image: mattermost/mattermost-prod-app:5.21.0
 
     environment: 
-      - DB_HOST=mattermost_db
+      DB_HOST: mattermost_db
       # talk to the port within the overlay network
       # without (over) exposing ports
-      - DB_PORT_NUMBER=5432
-      - MM_USERNAME=mattermost #${MM_USER}
-      - MM_PASSWORD=mattermost #${MM_USER_PASSWORD}
-      - MM_DBNAME=mattermost
+      DB_PORT_NUMBER: 5432
+      MM_USERNAME: mattermost
+      MM_PASSWORD: /run/secrets/db_password
+      MM_DBNAME: mattermost
       # pass the edition to be used, default is enterprise
       # setting this env var will make the app use the team edition
-      - edition=team
+      edition: team
+
+    secrets:
+      - db_password
 
     deploy:
       mode: replicated
@@ -79,22 +88,25 @@ services:
 
       placement:
         constraints:
-          - "node.labels.traefik==true"
+          - "node.labels.mattermost==true"
+#          - "node.role==worker"
 
       restart_policy:
-        condition: any
-        delay: 3s
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
       
       labels:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.http.routers.app.entrypoints=web-secured"
         ######################################### UPDATE HOST ####################
-        - "traefik.http.routers.app.rule=Host(`mattermost.frontlineinfo.test`)" ##
+        - "traefik.http.routers.app.rule=Host(`mm.demeglio.local`)"             ##
         ##########################################################################
         - "traefik.http.routers.app.tls=true"
-        - "traefik.http.routers.app.tls.certresolver=cfg-staging-resolver"
-#        - "traefik.http.routers.app.tls.certresolver=cfg-production-resolver"
+        - "traefik.http.routers.app.tls.certresolver=cfc-staging-resolver"
+#        - "traefik.http.routers.app.tls.certresolver=cfc-production-resolver"
         - "traefik.http.services.app.loadbalancer.server.port=8000"
         - "traefik.http.services.app.loadbalancer.passhostheader=true"
         - "traefik.http.services.app.loadbalancer.sticky=true"
@@ -143,4 +155,8 @@ volumes:
   mattermost-logs:
     external: true
   mattermost-plugins:
+    external: true
+
+secrets:
+  db_password:
     external: true
