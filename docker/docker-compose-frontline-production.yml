@@ -28,18 +28,14 @@ services:
     image: mattermost/mattermost-prod-db
 
     environment:
-      POSTGRES_USER: /run/secrets/frontline_db_username
-      POSTGRES_PASSWORD: /run/secrets/frontline_db_password
+      POSTGRES_USER: ${MM_DB_USERNAME}
+      POSTGRES_PASSWORD: ${MM_DB_PASSWORD}
       POSTGRES_DB: mattermost
       # uncomment the following to enable backup
       #- AWS_ACCESS_KEY_ID=XXXX
       #- AWS_SECRET_ACCESS_KEY=XXXX
       #- WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
       #- AWS_REGION=us-east-1
-    
-    secrets:
-      - frontline_db_password
-      - frontline_db_username
 
     deploy:
       mode: replicated
@@ -74,16 +70,12 @@ services:
       # talk to the port within the overlay network
       # without (over) exposing ports
       DB_PORT_NUMBER: 5432
-      MM_USERNAME: /run/secrets/frontline_db_username
-      MM_PASSWORD: /run/secrets/frontline_db_password
+      MM_USERNAME: ${MM_DB_USERNAME}
+      MM_PASSWORD: ${MM_DB_PASSWORD}
       MM_DBNAME: mattermost
       # pass the edition to be used, default is enterprise
       # setting this env var will make the app use the team edition
       edition: team
-
-    secrets:
-      - frontline_db_password
-      - frontline_db_username
 
     deploy:
       mode: replicated
@@ -156,10 +148,4 @@ volumes:
   mattermost-logs:
     external: true
   mattermost-plugins:
-    external: true
-
-secrets:
-  frontline_db_password:
-    external: true
-  frontline_db_username:
     external: true
