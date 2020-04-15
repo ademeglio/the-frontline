@@ -12,7 +12,7 @@ version: '3.7'
 ## https://github.com/ademeglio/the-frontline/wiki/Mattermost-Setup-&-Configuration ##
 ##                                                                                  ##
 ## `docker stack deploy --with-registry-auth --resolve-image always --prune \       ##
-##  --compose-file=docker-compose-production.yml frontline`                         ##
+##  --compose-file=docker-compose-frontline-production.yml frontline`               ##
 #####################################################################################
 
 x-default-opts:
