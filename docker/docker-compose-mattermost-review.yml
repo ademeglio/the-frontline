@@ -29,7 +29,7 @@ services:
 
     environment:
       POSTGRES_USER: mattermost
-      POSTGRES_PASSWORD: /run/secrets/db_password
+      POSTGRES_PASSWORD: /run/secrets/frontline_db_password
       POSTGRES_DB: mattermost
       # uncomment the following to enable backup
       #- AWS_ACCESS_KEY_ID=XXXX
@@ -38,7 +38,7 @@ services:
       #- AWS_REGION=us-east-1
     
     secrets:
-      - db_password
+      - frontline_db_password
 
     deploy:
       mode: replicated
@@ -73,14 +73,14 @@ services:
       # without (over) exposing ports
       DB_PORT_NUMBER: 5432
       MM_USERNAME: mattermost
-      MM_PASSWORD: /run/secrets/db_password
+      MM_PASSWORD: /run/secrets/frontline_db_password
       MM_DBNAME: mattermost
       # pass the edition to be used, default is enterprise
       # setting this env var will make the app use the team edition
       edition: team
 
     secrets:
-      - db_password
+      - frontline_db_password
 
     deploy:
       mode: replicated
@@ -98,6 +98,7 @@ services:
         window: 120s
       
       labels:
+        - "com.frontlineinfo.db: "As of 4/14/2020 Postgres v9.4"
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.http.routers.app.entrypoints=web-secured"
@@ -158,5 +159,5 @@ volumes:
     external: true
 
 secrets:
-  db_password:
+  frontline_db_password:
     external: true
