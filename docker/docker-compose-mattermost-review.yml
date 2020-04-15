@@ -28,7 +28,7 @@ services:
     image: mattermost/mattermost-prod-db
 
     environment:
-      POSTGRES_USER: mattermost
+      POSTGRES_USER: /run/secrets/frontline_db_username
       POSTGRES_PASSWORD: /run/secrets/frontline_db_password
       POSTGRES_DB: mattermost
       # uncomment the following to enable backup
@@ -39,6 +39,7 @@ services:
     
     secrets:
       - frontline_db_password
+      - frontline_db_username
 
     deploy:
       mode: replicated
@@ -72,7 +73,7 @@ services:
       # talk to the port within the overlay network
       # without (over) exposing ports
       DB_PORT_NUMBER: 5432
-      MM_USERNAME: mattermost
+      MM_USERNAME: /run/secrets/frontline_db_username
       MM_PASSWORD: /run/secrets/frontline_db_password
       MM_DBNAME: mattermost
       # pass the edition to be used, default is enterprise
@@ -81,6 +82,7 @@ services:
 
     secrets:
       - frontline_db_password
+      - frontline_db_username
 
     deploy:
       mode: replicated
@@ -160,4 +162,6 @@ volumes:
 
 secrets:
   frontline_db_password:
+    external: true
+  frontline_db_username:
     external: true
