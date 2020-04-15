@@ -24,7 +24,7 @@ x-default-opts:
 services:
 
 # Use official Mattermost prod-db image
-  db:
+  mm-db:
     image: mattermost/mattermost-prod-db
 
     environment:
@@ -71,7 +71,7 @@ services:
     image: mattermost/mattermost-prod-app:5.21.0
 
     environment: 
-      DB_HOST: frontline_db
+      DB_HOST: frontline_mm-db
       # talk to the port within the overlay network
       # without (over) exposing ports
       DB_PORT_NUMBER: 5432
