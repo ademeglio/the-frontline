@@ -50,9 +50,7 @@ services:
       
       restart_policy:
         condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+        delay: 2s
     
       labels:
         - "com.frontlineinfo.db=As of 4/14/2020 Postgres v9.4"
@@ -95,10 +93,8 @@ services:
 #          - "node.role==worker"
 
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+        condition: any
+        delay: 2s
       
       labels:
         - "traefik.enable=true"
