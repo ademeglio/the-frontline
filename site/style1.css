@@ -1,0 +1,31 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.618em;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+:root {
+    --cscPurple: rgb(67, 0, 255);
+    --cscTeal: rgb(19, 239,195);
+    --cscGrey: rgb(128, 128, 128);
+    --ltGrey: rgb(242,242,242);
+}
+
+h1, h2{
+    font-weight: 900;
+    color: var(--cscPurple);
+}
+
+.title {
+    font-size: 20;
+}
+
+h1 {
+    font-size: 38px;
+    
+}
+
+h
