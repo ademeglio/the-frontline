@@ -20,19 +20,25 @@ h1, h2, h3{
 }
 
 h1 {
-    font-size: 38px;   
+    font-size: 38px;
+    padding-top: 38px; 
+    padding-bottom: 20px;  
 }
 
 h2 {
     font-size: 30px;
+    padding-bottom: 15px;
 }
 
 h3 {
     font-size: 25px;
+    padding-top: 12px;
+    padding-bottom: 10px;
 }
 
 blockquote {
     font-size: 33px;
+    line-height: 1.5em;
 }
 
 p {
@@ -44,8 +50,9 @@ a {
     font-size: 17px;
 }
 
-/*styling for large screen devices*/
+/*!!!styling for large screen devices!!!*/
 
+/*head*/
 header {
     position: fixed;
     background-color: white;
@@ -60,7 +67,6 @@ header {
     margin-bottom: 10px;
     margin-left: 10%;
     margin-right: 10%;
-
 }
 
 .navButton {
@@ -69,12 +75,11 @@ header {
 
 .nav {
     float: right;
-    text-align: center;
-    padding-top: 50px;
+    padding-top: 39px;
 }
 
 .nav > a {
-    padding: 10px;
+    margin-left: 20px;
     text-decoration: none;
     color: black;
 }
@@ -88,7 +93,64 @@ header {
     max-height: 129px;
 }
 
+/*main*/
+
 .container {
-    display: inline-flex;
-    margin-top: 130px;
+    display: inline-block;
+}
+
+.container > section {
+    padding-top: 130px;
+    padding-bottom: 65px;
+}
+
+.container > section > div {
+    margin-left: 10%; 
+    margin-right: 10%;
+    padding: 10px; 
+}
+
+.topColorBar {
+    background-color: var(--cscPurple);
+    height: 22px;
+}
+
+.comGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;    
+}
+
+.comGrid > div {
+    margin-top: 5px;
+}
+
+#sectOne, #sectThree {
+    background-color: var(--ltGrey);
+}
+
+.current, .solution, .mattermost {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+}
+
+.midColorBar {
+    height: 22px;
+    background-color: var(--cscTeal);
+    margin-bottom: 40px;
+}
+
+/*footer*/
+
+footer {
+    border-top: 22px solid var(--cscTeal);
+    padding: 20px;
+    background-color: var(--ltGrey);
+}
+
+footer > div {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
