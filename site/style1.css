@@ -44,3 +44,51 @@ a {
     font-size: 17px;
 }
 
+/*styling for large screen devices*/
+
+header {
+    position: fixed;
+    background-color: white;
+    display: block;
+    width: 100%;
+}
+
+.topBar {
+    display: grid;
+    grid-template-columns: 1fr 4fr 0fr;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.navButton {
+    display: hidden;
+}
+
+.nav {
+    float: right;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.nav > a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav >a:hover {
+    border-bottom: 5px solid var(--cscPurple);
+}
+
+.logo {
+    max-width: 215px;
+    max-height: 129px;
+}
+
+.container {
+    display: inline-flex;
+    margin-top: 130px;
+}
