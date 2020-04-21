@@ -36,11 +36,6 @@ h3 {
     padding-bottom: 10px;
 }
 
-blockquote {
-    font-size: 33px;
-    line-height: 1.5em;
-}
-
 p {
     font-size: 17px;
 }
@@ -50,9 +45,18 @@ a {
     font-size: 17px;
 }
 
-/*!!!styling for large screen devices!!!*/
+button {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 3px solid black;
+    background-color: var(--cscPurple);
+    font-size: 19px;
+    width: 200px;
+}
 
-/*head*/
+
+/*!!!header styling for mobile devices!!!*/
 header {
     position: fixed;
     background-color: white;
@@ -62,84 +66,204 @@ header {
 
 .topBar {
     display: grid;
-    grid-template-columns: 1fr 4fr 0fr;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px;
 }
 
 .navButton {
-    display: hidden;
-}
-
-.nav {
+    display: block;
+    margin: 12px;
+    width:45px; 
     float: right;
-    padding-top: 39px;
 }
 
-.nav > a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: black;
-}
-
-.nav >a:hover {
-    border-bottom: 5px solid var(--cscPurple);
-}
-
-.logo {
-    max-width: 215px;
-    max-height: 129px;
-}
-
-/*main*/
-
-.container {
-    display: inline-block;
-}
-
-.container > section {
-    padding-top: 130px;
-    padding-bottom: 65px;
-}
-
-.container > section > div {
-    margin-left: 10%; 
-    margin-right: 10%;
-    padding: 10px; 
-}
-
-.topColorBar {
-    background-color: var(--cscPurple);
-    height: 22px;
-}
-
-.comGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;    
-}
-
-.comGrid > div {
-    margin-top: 5px;
-}
-
-#sectOne, #sectThree {
+.navButton:hover {
     background-color: var(--ltGrey);
 }
 
-.current, .solution, .mattermost {
+.hamBar {
+    height: 7px;
+    margin: 4px;
+    background-color: black; 
+}
+
+.navBox {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
+    grid-template-rows: 1fr;
+    background-color: var(--ltGrey);
 }
 
-.midColorBar {
-    height: 22px;
+.nav > a {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+
+}
+
+/*!!!header styling for medium screens!!!*/
+
+/*600-850px - header only*/
+
+/*!!!header styling for large-screen devices!!!*/
+@media only screen and (min-width: 768px) {
+
+    .topBar {
+        display: inline-flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .navButton {
+        width:0px;
+        margin: 0px;
+        display: none;
+    }
+
+    .navBox {
+        float: right;
+        display: flex;
+        position: relative;
+    }
+    .nav {
+        display: flex;
+        float: right;
+        padding-top: 39px;
+        background-color: white;
+        right: 0;
+    }
+
+    .nav > a {
+        margin-left: 15px;
+        font-size: 17px;
+    }
+
+    .nav >a:hover {
+        border-bottom: 5px solid var(--cscPurple);
+    }
+
+    .logo {
+        max-width: 215px;
+        max-height: 129px;
+    }
+}
+
+/*!!!main styling for mobile devices!!!*/
+
+.container {
+    display: inline-block;
+    padding-top: 120px;
+    background-color: white;
+}
+
+.container > section > div {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+#about {
+    background-color: var(--cscPurple)
+}
+
+#about > div > h1, .comGrid, h3 {
+    display: none;
+} 
+
+blockquote {
+    font-size: 19px;
+    color: white;
+}
+
+#sectOne {
+    background-color: white;
+}
+
+#sectTwo {
     background-color: var(--cscTeal);
-    margin-bottom: 40px;
 }
 
+#testAppBtn {
+    background-color: var(--cscTeal);
+}
+
+#about > div > button {
+    border-color: white;
+    color: white;
+}
+
+#imgComm, #imgGood {
+    width: 50%;
+    padding-bottom: 20px;
+}
+
+/*!!!main styling for larger screens!!!*/
+@media only screen and (min-width: 768px) {
+
+    .container > section {
+        padding: 65px;
+        padding-bottom: 65px;
+    }
+    .container > section > div {
+        margin-left: 10%; 
+        margin-right: 10%;
+        padding: 10px; 
+    }
+
+    #about, #sectTwo {
+        background-color: white;
+    }
+
+    .topColorBar {
+        background-color: var(--cscPurple);
+        height: 22px;
+    }
+    #about > div > h1 {
+        display: inline;
+    } 
+    
+    blockquote {
+        font-size: 33px;
+        line-height: 1.5em;
+        color: black;
+    }
+    
+    .comGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;    
+    }
+    
+    .comGrid > div {
+        margin-top: 5px;
+    }
+    
+    #sectOne, #sectThree {
+        background-color: var(--ltGrey);
+    }
+    
+    .current, .solution, .mattermost {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+    }
+    
+    .midColorBar {
+        height: 22px;
+        background-color: var(--cscTeal);
+        margin-bottom: 40px;
+    }
+}    
 /*footer*/
 
 footer {
@@ -153,4 +277,5 @@ footer > div {
     margin-right: 10%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
 }
