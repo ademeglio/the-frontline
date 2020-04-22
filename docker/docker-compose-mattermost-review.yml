@@ -1,7 +1,7 @@
 version: '3.7'
 
 #####################################################################################
-##  The Frontline Mattermost-0.0.2 April 2020                                       ##
+##  The Frontline Mattermost-0.0.3 April 2020                                       ##
 ##  REVIEW CONFIGURATION                                                            ##
 ##  A Can't Stop Columbus Project                                                   ##
 ##  Notes:                                                                          ##
@@ -25,7 +25,7 @@ services:
 
 # Use official Mattermost prod-db image
   db:
-    image: mattermost/mattermost-prod-db
+    image: mattermost/mattermost-prod-db:5.22.0
 
     environment:
       POSTGRES_USER: ${MM_DB_USERNAME}
@@ -62,7 +62,7 @@ services:
   
 # Mattermost Application. Use official Mattermost prod-app image
   app:
-    image: mattermost/mattermost-prod-app:5.21.0
+    image: mattermost/mattermost-prod-app:5.22.0
 
     environment: 
       DB_HOST: mattermost_db
