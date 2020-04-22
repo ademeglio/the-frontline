@@ -46,7 +46,7 @@ services:
 #          - "node.role==worker"
       
       restart_policy:
-        condition: on-failure
+        condition: any
         delay: 2s
     
       labels:

@@ -46,10 +46,8 @@ services:
 #          - "node.role==worker"
       
       restart_policy:
-        condition: on-failure
+        condition: any
         delay: 5s
-        max_attempts: 3
-        window: 120s
     
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -86,10 +84,8 @@ services:
 #          - "node.role==worker"
 
       restart_policy:
-        condition: on-failure
+        condition: any
         delay: 5s
-        max_attempts: 3
-        window: 120s
       
       labels:
         - "com.frontlineinfo.db: "As of 4/14/2020 Postgres v9.4"
