@@ -18,22 +18,36 @@ h1, h2, h3{
     font-weight: 900;
     color: var(--cscPurple);
 }
-
 h1 {
-    font-size: 38px;
-    padding-top: 38px; 
-    padding-bottom: 20px;  
-}
-
-h2 {
-    font-size: 30px;
-    padding-bottom: 15px;
+    font-size: 36px;
 }
 
 h3 {
     font-size: 25px;
-    padding-top: 12px;
-    padding-bottom: 10px;
+    font-weight: 400
+}
+
+.comGrid > div{
+    font-size: 25px;
+    padding: 10px 0px;
+}
+@media only screen and (min-width: 768px) {
+    h1 {
+        font-size: 38px;
+        padding: 50px 0px;  
+    }
+
+    h2 {
+        font-size: 30px;
+        padding: 20px 0px;
+    }
+
+    h3 {
+        font-weight: 900;
+        font-size: 25px;
+        padding-top: 12px;
+        padding-bottom: 10px;
+    }
 }
 
 p {
@@ -49,8 +63,9 @@ button {
     margin-top: 30px;
     margin-bottom: 20px;
     padding: 5px;
-    border: 3px solid black;
-    background-color: var(--cscPurple);
+    border: 3px solid var(--cscPurple);
+    background-color: white;
+    color: var(--cscPurple);
     font-size: 19px;
     width: 200px;
 }
@@ -77,8 +92,13 @@ header {
     float: right;
 }
 
-.navButton:hover {
-    background-color: var(--ltGrey);
+.navButton {
+    background-color: white;
+    border: none;
+}
+
+.navButton:hover, .navButton:focus {
+    background-color: var(--var(--cscGrey));
 }
 
 .hamBar {
@@ -87,18 +107,18 @@ header {
     background-color: black; 
 }
 
-.navBox {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: none;
-    position: absolute;
-    z-index: 1;
+/*container to position nav for dropdown etc.*/
+#myNav {
+    position: relative;
+    display: inline-block;
 }
 
+/*nav hidden by default*/
 .nav {
-    display: grid;
-    grid-template-rows: 1fr;
+    display: none;
+    position: absolute;
     background-color: var(--ltGrey);
+    z-index:1;
 }
 
 .nav > a {
@@ -106,7 +126,16 @@ header {
     font-size: 20px;
     text-decoration: none;
     color: black;
+    padding: 12-x 16px;
+}
 
+.nav > a:hover {
+    background-color: var(--cscGrey);
+}
+
+/*show dropdown menu - add this class to .nav container when button is clicked*/
+.show {
+    display: block;
 }
 
 /*!!!header styling for medium screens!!!*/
@@ -162,7 +191,7 @@ header {
 
 .container {
     display: inline-block;
-    padding-top: 120px;
+    padding-top: 100px;
     background-color: white;
 }
 
@@ -173,40 +202,23 @@ header {
     padding-bottom: 50px;
 }
 
-#about {
-    background-color: var(--cscPurple)
-}
-
-#about > div > h1, .comGrid, h3 {
-    display: none;
-} 
-
 blockquote {
-    font-size: 19px;
-    color: white;
+    font-size: 25px;
 }
 
-#sectOne {
-    background-color: white;
+#sectOne, #sectThree {
+    background-color: var(--ltGrey);
 }
 
-#sectTwo {
-    background-color: var(--cscTeal);
-}
 
-#testAppBtn {
-    background-color: var(--cscTeal);
-}
 
-#about > div > button {
-    border-color: white;
-    color: white;
-}
-
-#imgComm, #imgGood {
-    width: 50%;
+#imgComm, #imgGood, #mmlogo {
     padding-bottom: 20px;
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
 }
+
 
 /*!!!main styling for larger screens!!!*/
 @media only screen and (min-width: 768px) {
@@ -263,6 +275,11 @@ blockquote {
         background-color: var(--cscTeal);
         margin-bottom: 40px;
     }
+
+    #mmlogo {
+        max-height: 200px;
+        max-width: 200px;
+    }
 }    
 /*footer*/
 
@@ -272,10 +289,14 @@ footer {
     background-color: var(--ltGrey);
 }
 
-footer > div {
+.footgrid {
     margin-left: 10%;
     margin-right: 10%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+}
 
+.footLinks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

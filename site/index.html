@@ -14,16 +14,14 @@
 				<div class="logo">
 					<img src="./images/LogoSmall.png" id="logoImg">
 				</div>
-						<!--nav button for mobile view only-->
-				<div>	
-					<div onclick = "showNav()" class="navButton" id="navBtn">
-						<div class="hamBar" id="bar1"></div>
-						<div class="hamBar" id="bar2"></div>
-						<div class="hamBar" id="bar3"></div>
-					</div>
-				</div>
+						<!--nav button for mobile view only-->	
+				<button onclick = "showNav()" class="navButton" id="navBtn">
+					<div class="hamBar" id="bar1"></div>
+					<div class="hamBar" id="bar2"></div>
+					<div class="hamBar" id="bar3"></div>
+				</button>
 				<!-- top nav for large screen only -->
-				<div class="navBox" id="myNavBox">
+				<div id="myNav">
 					<div class = nav>
 						<a href="./apply.html">Apply Today</a>
 						<a href="./communities.html">Communities</a>
@@ -43,6 +41,7 @@
 							providers in real time by allowing the frontline to 
 							share updates, resources and trends. This is part of 
 							the Can't Stop Columbus Project.</blockquote>
+						<button id="applyBtn">Try the App</button>
 				<!--Connecting Communities section for large screen only-->
 						<h3>Connecting Communities</h3>
 						<div class="comGrid">
@@ -58,8 +57,6 @@
 								<a href="./communities">View full list</a>
 							</div>
 						</div>
-						<h3>Try The App</h3>
-						<button id="applyBtn">Apply Today</button>
 					</div>
 				</section>
 				<section id="sectOne">
@@ -69,10 +66,11 @@
 						</div>
 						<div>
 							<h2>Current Situation</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Enim sit amet venenatis urna cursus eget nunc. Magna sit amet purus 
-							gravida quis blandit turpis cursus.
+							<p>Communication across social workers and healthcare providers in real time 
+								is limited. There are communication limitations between different hospital 
+								systems as well as within the hospitals themselves. Different groups such 
+								as doctors, nurses, social workers, etc do not have easy ways to share 
+								information with each other. 
 							</p>
 						</div>
 					</div>
@@ -86,13 +84,12 @@
 							</div>	
 							<div>
 								<h2>Proposed Solution</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-								Enim sit amet venenatis urna cursus eget nunc. Magna sit amet purus 
-								gravida quis blandit turpis cursus. Vitae ultricies leo integer 
-								malesuada nunc vel. Nisi est sit amet facilisis magna etiam tempor
-								orci. Ac orci phasellus egestas tellus rutrum tellus. Dolor morbi 
-								non arcu risus quis varius quam. 
+								<p>A Slack-like chat solution along with some type of organizing 
+									function for those on the front line to share updates on what 
+									they are seeing would be very valuable. Wouldn't be able to 
+									share sensitive information of course, a tool to share resources 
+									and trends and building a community of encouragement would be 
+									appreciated. 
 								</p>
 							<div>
 						</div>
@@ -101,15 +98,17 @@
 				</section>
 				<section id="sectThree">
 					<div class="mattermost">
-						<div></div>
+						<div>
+							<img id="mmlogo" src="./images/icon.png">
+						</div>
 						<div>
 							<h2>Mattermost Highlights</h2>
-							<p>Enim sit amet venenatis urna cursus eget nunc. Magna sit amet purus 
-								gravida quis blandit turpis cursus. Vitae ultricies leo integer 
-								malesuada nunc vel. Nisi est sit amet facilisis magna etiam tempor
-								orci. Ac orci phasellus egestas tellus rutrum tellus. Dolor morbi 
-								non arcu risus quis varius quam. Turpis egestas integer eget aliquet
-								nibh praesent. Semper risus in hendrerit gravida.
+							<p>Mattermost is an open source Slack alternative. Communicate 
+								seamlessly through organized conversations in teams and 
+								channels. This tool has fully searchable message history, 
+								1-on-1 and group messaging, voice, video, and screen sharing 
+								as well as file, image, and link sharing.
+
 							</p>
 						</div>
 					</div>
@@ -125,13 +124,20 @@
 			</div>
 		</main>
 		<footer>
-			<div><!--all placeholder links-->
-				<a href="./mattermostAbout">About Mattermost</a>
-				<a href="./privacy">Privacy</a>
-				<a href="./terms">Terms of Service</a>
-				<a href="./help">Help & FAQ</a>
-				<a href="mailto:info@frontlineinfo.com">Contact Us</a>
+			<div class="footgrid">
+				<div>
+					<img src="./images/LogoSmall.png" id="logoImg">
+				</div>
+				<div class="footLinks"><!--all placeholder links-->
+					<a href="./mattermostAbout">About Mattermost</a>
+					<a href="./privacy">Privacy</a>
+					<a href="./terms">Terms of Service</a>
+					<a href="./help">Help & FAQ</a>
+					<a href="mailto:info@frontlineinfo.com">Contact Us</a>
+				</div>
 			</div>
+			<img src="./images/cscLogo.png" id="cscLogoImg">
 		</footer>
+		<script src="basic.js"></script>
 	</body>
 </html>
