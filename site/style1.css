@@ -134,7 +134,7 @@ header {
 }
 
 /*show dropdown menu - add this class to .nav container when button is clicked*/
-.show {
+.nav.show {
     display: block;
 }
 
@@ -213,6 +213,7 @@ blockquote {
 
 
 #imgComm, #imgGood, #mmlogo {
+    display: block;
     padding-bottom: 20px;
     max-height: 200px;
     max-width: 200px;
@@ -292,11 +293,25 @@ footer {
 .footgrid {
     margin-left: 10%;
     margin-right: 10%;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
 }
 
-.footLinks {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+#cscLogoImg {
+    display: block;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+@media only screen and (min-width: 768px) {
+    .footgrid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .footLinks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
