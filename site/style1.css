@@ -31,6 +31,13 @@ h3 {
     font-size: 25px;
     padding: 10px 0px;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0;
+}
+
 @media only screen and (min-width: 768px) {
     h1 {
         font-size: 38px;
@@ -82,14 +89,20 @@ header {
 .topBar {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 10px;
+    margin: 20px 10%;
 }
 
-.navButton {
-    display: block;
-    margin: 12px;
-    width:45px; 
-    float: right;
+.menu-container {
+    padding-right: 0;
+    text-align: right;
+    width: 100%;
+    height: 3em;
+}
+
+.menu-container #menu-bars-container {
+    cursor: pointer;
+    display: inline-block;
+    padding-right: 5px;
 }
 
 .navButton {
@@ -98,44 +111,70 @@ header {
 }
 
 .navButton:hover, .navButton:focus {
-    background-color: var(--var(--cscGrey));
+    background-color: var(--cscGrey);
 }
 
 .hamBar {
+    width: 30px;
     height: 7px;
-    margin: 4px;
+    margin: 4px 0;
     background-color: black; 
 }
 
-/*container to position nav for dropdown etc.*/
-#myNav {
-    position: relative;
-    display: inline-block;
+#main-nav {
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 2px;
+    position: absolute;
+    top: 2.5em; 
 }
 
-/*nav hidden by default*/
-.nav {
-    display: none;
-    position: absolute;
-    background-color: var(--ltGrey);
-    z-index:1;
+#main-nav > div > {
+    width: 100%;
 }
 
 .nav > a {
-    display: block;
+    display: flex;
+    justify-content: center;
+
     font-size: 20px;
     text-decoration: none;
     color: black;
     padding: 12-x 16px;
+    width: 100%;
 }
 
 .nav > a:hover {
-    background-color: var(--cscGrey);
+    background-color: var(--ltGrey);
 }
 
-/*show dropdown menu - add this class to .nav container when button is clicked*/
+.nav > a:visited {
+    text-decoration: none;
+    color: var(--cscGrey);
+}
+
+/* OPEN MENU FUNCTIONALITY */
 .nav.show {
     display: block;
+}
+
+.show #bar1 {
+    -webkit-transform: rotate(-45deg) translate(-12px, 6px);
+    transform: rotate(-45deg) translate(-8px, 10px);
+}
+
+.show #bar2 {
+    opacity: 0;
+}
+
+.show #bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-5px, -8px);
+}
+
+.show #main-nav > ul {
+    height: 20em;
 }
 
 /*!!!header styling for medium screens!!!*/
@@ -153,17 +192,19 @@ header {
         margin-right: 10%;
     }
 
-    .navButton {
-        width:0px;
-        margin: 0px;
-        display: none;
+    #nav-container {
+        height: 2.5em;
     }
 
-    .navBox {
-        float: right;
-        display: flex;
-        position: relative;
+    .menu-container {
+        height: 2em;
+        padding-right: .5em;
     }
+
+    .hamBar {
+       width: 0; 
+    }
+
     .nav {
         display: flex;
         float: right;

@@ -14,21 +14,25 @@
 				<div class="logo">
 					<img src="./site/images/LogoSmall.png" id="logoImg">
 				</div>
-						<!--nav button for mobile view only-->	
-				<button onclick = "showNav()" class="navButton" id="navBtn">
-					<div class="hamBar" id="bar1"></div>
-					<div class="hamBar" id="bar2"></div>
-					<div class="hamBar" id="bar3"></div>
-				</button>
-				<!-- top nav for large screen only -->
-				<div id="myNav">
-					<div class = nav>
-						<a href="./site/apply.html">Apply Today</a>
-						<a href="./site/communities.html">Communities</a>
-						<a href="./site/help.html">Help & FAQ</a>
-						<a href="mailto:info@frontlineinfo.com">Contact</a>
+						<!--nav button for mobile view only-->
+				<div id="nav-container">
+					<div class="menu-container">
+						<div id="menu-bars-container" onclick="toggleMenu(this)">
+							<div class="hamBar" id="bar1"></div>
+							<div class="hamBar" id="bar2"></div>
+							<div class="hamBar" id="bar3"></div>
+						</div>
+						<!-- top nav for large screen only -->
+						<div id="main-nav">
+							<div class = nav>
+								<a href="./site/apply.html">Apply Today</a>
+								<a href="./site/communities.html">Communities</a>
+								<a href="./site/help.html">Help & FAQ</a>
+								<a href="mailto:info@frontlineinfo.com">Contact</a>
+							</div>
+						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
 		</header>
 		<main>
@@ -44,18 +48,18 @@
 						<button id="applyBtn">Try the App</button>
 				<!--Connecting Communities section for large screen only-->
 						<h3>Connecting Communities</h3>
-						<div class="comGrid">
-							<div>Certified Nurse Practitioners</div>
-							<div>EMS</div>
-							<div>Social Workers & Therapists</div>
-							<div>Hospital Administrators</div>
-							<div>Hospitalists</div>
-							<div>Nurse Assistants</div>
-							<div>Nurses' Aides</div>
-							<div>Off-Topic</div>
-							<div>
+						<ul class="comGrid">
+							<li>Certified Nurse Practitioners</li>
+							<li>EMS</li>
+							<li>Social Workers & Therapists</li>
+							<li>Hospital Administrators</li>
+							<li>Hospitalists</li>
+							<li>Nurse Assistants</li>
+							<li>Nurses' Aides</li>
+							<li>Off-Topic</li>
+							<li>
 								<a href="./site/communities">View full list</a>
-							</div>
+							</li>
 						</div>
 					</div>
 				</section>
@@ -138,6 +142,6 @@
 			</div>
 			<img src="./site/images/cscbus_logo_square.svg" id="cscLogoImg">
 		</footer>
-		<script src="./site/basic.js"></script>
+		<script src="./site/nav.js"></script>
 	</body>
 </html>
