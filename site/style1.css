@@ -394,6 +394,10 @@ section > div > element {
     }
 }    
 /*footer*/
+#logoImg {
+    max-height: 130px;
+    max-width: 200px;
+}
 
 footer {
     border-top: 22px solid var(--cscTeal);
@@ -402,8 +406,13 @@ footer {
 }
 
 .footgrid {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#logoImg {
+    max-height: 130;
+    max-width: 300;
 }
 
 #cscLogoImg {
