@@ -454,6 +454,41 @@
                 },
                 {
                     "ActionType": "button",
+                    "ActionDisplayName": "Student",
+                    "ActionName": "student-action",
+                    "ChannelsAddedTo": [
+                        "student",
+                        "urgent-needs",
+                        "app-help",
+                        "app-feedback",
+                        "topic-behavioral-health",
+                        "topic-equipment-needs-requests",
+                        "topic-personal-safety",
+                        "topic-personal-wellness",
+                        "topic-social-services-and-employment",
+                        "topic-telehealth-questions-best-practices",
+                        "topic-testing-evaluation"
+                        ],
+                    "ActionSuccessfulMessage": [
+                        "### Awesome!, I have added you to the following channels:",
+                        "~student - Introduce yourself, what you are studying, and where!",
+                        "~community-resources - Share resources for all here.",
+                        "~urgent-needs - This is the place to post your urgent needs for all to see.",
+                        "~app-feedback - To share your thoughts and idea on our use of Mattermost.",
+                        "~app-help - A place to ask for help with the application. (Staffed by volunteers)",
+                        "~topic-behavioral-health - Behavioral health topic related discussions.",
+                        "~topic-equipment-needs-requests - Equiment needs related discussions.",
+                        "~topic-personal-safety - Personal safety related discussions.",
+                        "~topic-personal-wellness - Personal wellness related discussions.",
+                        "~topic-social-services-and-employment - Discussions related to social services and employment.",
+                        "~topic-telehealth-questions-best-practices - Telehealth questions and best practice discussions.",
+                        "~topic-testing-evaluation - Discussions related to testing and evaluation.",
+                        "",
+                        "Don't forget to explore other available public channels that may interest you so you can connect and network!"
+                    ]
+                },
+                {
+                    "ActionType": "button",
                     "ActionDisplayName": "Surgery",
                     "ActionName": "surgery-action",
                     "ChannelsAddedTo": [
@@ -522,7 +557,7 @@
                         "Don't forget to explore other available public channels that may interest you or",
                         "you can create your own channel!"
                     ]
-                },
+                }
             ]
         }
     ]
