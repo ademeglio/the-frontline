@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type = "text/css" href="./style1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<header>
+			<div class="topBar">
+				<div class="logo">
+					<img src="./images/LogoSmall.png" id="logoImg">
+				</div>
+						<!--nav button for mobile view only-->
+				<div id="nav-container">
+					<div class="menu-container">
+						<div id="menu-bars-container" onclick="toggleMenu(this)">
+							<div class="hamBar" id="bar1"></div>
+							<div class="hamBar" id="bar2"></div>
+							<div class="hamBar" id="bar3"></div>
+						</div>
+						<!-- top nav for large screen only -->
+						<div id="main-nav">
+							<div class = nav>
+								<a href="./apply.html">Apply Today</a>
+								<a href="./terms.html">Terms & Conditions</a>
+								<a href="./help.html">Help & FAQ</a>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<section id="about">
+					<div>
+						<div class="topColorBar"></div>
+                        <h1> Help and FAQ</h1>
+                        <h3>Where to find help:</h3>
+                            <ul>
+                                <li>In the App Help Channel</li>
+                                <li>Help Request Form on this page</li>
+                            </ul>
+                        
+<!--To cut down on spam, I think we should rely on the form with a recaptcha.
+Link to the mattermost End-User Guide-->
+                        <h2>FAQ</h2>
+<!--In no particular order, yet.-->
+                        <h3>How do I sign up?</h3>
+
+                        <h3>What channels are available?</h3>
+<!--Link to Channel Link Page or wherever we decide to list the channels.-->
+
+                        <h3>Can I create a private channel for my organization?</h3>
+
+                        <h3>Can I invite someone I know in the industry to join?</h3>
+
+                        <h3>Can I tag a post so that it is easier to find?</h3>
+
+                        <p>Yes. You can add hashtags to your posts so that you can search for like subjects. For example, adding #ppe will allow you to search. </p>
+
+						<h3>Is there an application I can install on my phone or computer?</h3>
+			
+						<p>Yes.</p>
+
+						<h3>Do you share or sell my information?</h3>
+
+						<p>NO. We’re here to support your efforts to communicate with your colleagues across many channels and about the topics you care about.</p>
+						
+						<h3>What will this cost me?</h3>
+
+						<p>Currently, nothing, nada, zilch. This is a volunteer project currently supported by ….</p>
+
+						<h3>Can we make a donation?</h3>
+						<p>Yes! If you are willing and able, please contribute to... </p>
+
+						<h3>Are you HIPAA compliant?</h3>
+						<p>At this time, no, we are not completely HIPAA compliant. If this is a feature that is important to you, please let us know. In the meantime, you must remember to follow all HIPPA regulations and guidelines when communicating with your peers and across channels.</p>
+
+						<h3>How do I leave a topic?</h3>
+
+                    </div>
+				</section>
+								<div id="bottomBar"></div><!--invisible in mobile view-->
+			</div>
+		</main>
+		<footer>
+			<div class="footgrid">
+				<div>
+					<img src="./images/TheFrontLineLogo_transparent.png" id="logoImg">
+				</div>
+				<ul class="footLinks"><!--all placeholder links-->
+					<li><a href="./mattermostAbout">About Mattermost</a></li>
+					<li><a href="./privacy">Privacy</a></li>
+					<li><a href="./terms">Terms of Service</a></li>
+					<li><a href="./help">Help & FAQ</a></li>
+					<li><a href="mailto:info@frontlineinfo.com">Contact Us</a></li>
+				</ul>
+			</div>
+			<img src="./images/cscbus_logo_square.svg" id="cscLogoImg">
+		</footer>
+		<script src="./nav.js"></script>
+	</body>
+</html>
