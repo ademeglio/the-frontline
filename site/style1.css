@@ -38,6 +38,10 @@ ul {
     padding: 0;
 }
 
+li {
+    font-size: 20px;
+}
+
 @media only screen and (min-width: 768px) {
     h1 {
         font-size: 38px;
@@ -330,6 +334,11 @@ section > div > element {
     margin: auto;
 }
 
+.privacy-responsibility > li {
+    font-size: 16px;
+    text-indent: 1em;
+}
+
 
 /*!!!main styling for larger screens!!!*/
 @media only screen and (min-width: 768px) {
@@ -420,8 +429,9 @@ footer {
     position: relative;
     right: 0;
     bottom: 0;
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 80px;
+    max-width: 80px;
+    float: right;
 }
 
 @media only screen and (min-width: 768px) {
