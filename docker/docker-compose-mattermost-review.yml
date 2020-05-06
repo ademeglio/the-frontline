@@ -88,7 +88,7 @@ services:
         delay: 5s
       
       labels:
-        - "com.frontlineinfo.db: "As of 4/14/2020 Postgres v9.4"
+        - "com.frontlineinfo.db='As of 4/14/2020 Postgres v9.4'"
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.http.routers.app.entrypoints=web-secured"
