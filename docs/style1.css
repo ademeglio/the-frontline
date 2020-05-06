@@ -1,0 +1,446 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.618em;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: black;
+}
+/*Root and common element stylings*/
+:root {
+    --cscPurple: rgb(67, 0, 255);
+    --cscTeal: rgb(19, 239,195);
+    --cscGrey: rgb(128, 128, 128);
+    --ltGrey: rgb(242,242,242);
+}
+
+h1, h2, h3{
+    font-weight: 900;
+    color: var(--cscPurple);
+}
+h1 {
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 400
+}
+
+.comGrid > div{
+    font-size: 25px;
+    padding: 10px 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0;
+}
+
+li {
+    font-size: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+    h1 {
+        font-size: 38px;
+        padding: 50px 0px;  
+    }
+
+    h2 {
+        font-size: 30px;
+        padding: 20px 0px;
+    }
+
+    h3 {
+        font-weight: 900;
+        font-size: 25px;
+        padding-top: 12px;
+        padding-bottom: 10px;
+    }
+}
+
+p {
+    font-size: 17px;
+}
+
+a {
+    color: var(--cscPurple);
+    font-size: 17px;
+}
+
+button {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 3px solid var(--cscPurple);
+    background-color: white;
+    color: var(--cscPurple);
+    font-size: 19px;
+    width: 200px;
+}
+
+
+/*!!!header styling for mobile devices!!!*/
+header {
+    position: fixed;
+    background-color: white;
+    display: block;
+    width: 100%;
+}
+
+.topBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#nav-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+
+    top:0;
+    left:0;
+    z-index: 3;
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+.menu-container {
+    padding: 30px;
+    text-align: right;
+    width: 100%;
+    height: 3em;
+}
+
+.menu-container #menu-bars-container {
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px;
+}
+
+.navButton {
+    background-color: white;
+    border: none;
+}
+
+.hamBar {
+    width: 30px;
+    height: 7px;
+    margin: 4px 0;
+    background-color: black; 
+}
+
+#main-nav {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 150px;
+    left:0; 
+    background-color: var(--cscPurple);
+}
+
+#main-nav > div > {
+    width: 100%;
+    margin: 25px;
+}
+
+.nav > a {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    padding: 10px 16px;
+    width: 100%;
+    background-color: white;
+}
+
+.nav > a:hover {
+    background-color: var(--ltGrey);
+}
+
+.nav > a:visited {
+    text-decoration: none;
+    color: var(--cscGrey);
+}
+
+/* OPEN MENU FUNCTIONALITY */
+.nav.show {
+    display: block;
+}
+
+.show #bar1 {
+    -webkit-transform: rotate(-45deg) translate(-12px, 6px);
+    transform: rotate(-45deg) translate(-8px, 10px);
+}
+
+.show #bar2 {
+    opacity: 0;
+}
+
+.show #bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-5px, -8px);
+}
+
+.show #main-nav > ul {
+    height: 20em;
+}
+
+/*!!!header styling for medium screens!!!*/
+@media only screen and (min-width: 700px) and (max-width: 975px) {
+    .topbar{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        margin-left: 20%;
+        margin-right: 20%
+    }
+    #nav-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #main-nav {
+        top: 140px;
+    }
+
+
+
+    #menu-bars-container{
+        display: none;
+    }
+
+    .hamBar {
+       width: 0; 
+    }
+
+    .nav {
+        display: flex;
+        background-color: white;
+        right: 0;
+    }
+
+    .nav > a {
+        margin-left: 15px;
+        font-size: 17px;
+    }
+
+    .nav >a:hover {
+        background-color: white;
+        border-bottom: 5px solid var(--cscPurple);
+    }
+
+    .logo {
+        max-width: 215px;
+        max-height: 129px;
+    }
+}
+
+/*!!!header styling for large-screen devices!!!*/
+@media only screen and (min-width: 975px) {
+    .topbar{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        margin-left: 20%;
+        margin-right: 20%
+    }
+
+    #nav-container {
+        display: inline-flex;
+        width: 75%;
+        justify-content: space-between;
+    }
+
+    #main-nav {
+        top: 50px;
+        right: 20px;
+        left: 30%;
+    }
+
+    #menu-bars-container{
+        display: none;
+    }
+
+    .hamBar {
+       width: 0; 
+    }
+
+    .nav {
+        display: flex;
+        background-color: white;
+        right: 0;
+    }
+
+    .nav > a {
+        margin-left: 15px;
+        font-size: 17px;
+    }
+
+    .nav >a:hover {
+        background-color: white;
+        border-bottom: 5px solid var(--cscPurple);
+    }
+
+    .logo {
+        max-width: 215px;
+        max-height: 129px;
+    }
+}
+
+
+/*!!!main styling for mobile devices!!!*/
+
+.container {
+    display: inline-block;
+    padding-top: 100px;
+    background-color: white;
+}
+
+section > div {
+    margin-left: 10%; 
+    margin-right: 10%;
+    padding: 10px; 
+}
+
+blockquote {
+    font-size: 25px;
+}
+
+section {
+    padding: 40px 0;
+}
+
+section > div > element {
+    margin: 0 20px;
+}
+
+#sectOne, #sectThree {
+    background-color: var(--ltGrey);
+}
+
+
+#imgComm, #imgGood, #mmlogo {
+    display: block;
+    margin: 20px;
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+}
+
+.privacy-responsibility > li {
+    font-size: 16px;
+    text-indent: 1em;
+}
+
+
+/*!!!main styling for larger screens!!!*/
+@media only screen and (min-width: 768px) {
+
+    .container > section {
+        padding: 65px;
+        padding-bottom: 65px;
+    }
+    .container > section > div {
+        margin-left: 10%; 
+        margin-right: 10%;
+        padding: 10px; 
+    }
+
+    #about, #sectTwo {
+        background-color: white;
+    }
+
+    .topColorBar {
+        background-color: var(--cscPurple);
+        height: 22px;
+    }
+    #about > div > h1 {
+        display: inline;
+    } 
+    
+    blockquote {
+        font-size: 33px;
+        line-height: 1.5em;
+        color: black;
+    }
+    
+    .comGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;    
+    }
+    
+    .comGrid > div {
+        margin-top: 5px;
+    }
+    
+    #sectOne, #sectThree {
+        background-color: var(--ltGrey);
+    }
+    
+    .current, .solution, .mattermost {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        margin: 15% 50px;
+    }
+    
+    .midColorBar {
+        height: 22px;
+        background-color: var(--cscTeal);
+        margin-bottom: 40px;
+    }
+
+    #mmlogo {
+        max-height: 200px;
+        max-width: 200px;
+    }
+}    
+/*footer*/
+#logoImg {
+    max-height: 130px;
+    max-width: 200px;
+}
+
+footer {
+    border-top: 22px solid var(--cscTeal);
+    padding: 20px;
+    background-color: var(--ltGrey);
+}
+
+.footgrid {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#logoImg {
+    max-height: 130;
+    max-width: 300;
+}
+
+#cscLogoImg {
+    display: block;
+    position: relative;
+    padding: 40px;
+    max-height: 80px;
+    max-width: 80px;
+    float: right;
+}
+
+@media only screen and (min-width: 768px) {
+    .footgrid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .footLinks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}

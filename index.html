@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type = "text/css" href="./docs/style1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<header>
+			<div class="topBar">
+				<div class="logo">
+					<img src="./docs/images/LogoSmall.png" id="logoImg">
+				</div>
+						<!--nav button for mobile view only-->
+				<div id="nav-container">
+					<div class="menu-container">
+						<div id="menu-bars-container" onclick="toggleMenu(this)">
+							<div class="hamBar" id="bar1"></div>
+							<div class="hamBar" id="bar2"></div>
+							<div class="hamBar" id="bar3"></div>
+						</div>
+						<!-- top nav for large screen only -->
+						<div id="main-nav">
+							<div class = nav>
+								<a href="./docs/apply.html">Apply Today</a>
+								<a href="./docs/privacy.html">Privacy</a>
+								<a href="./docs/help.html">Help & FAQ</a>
+								<a href="./docs/terms.html">Terms of Service</a>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<section id="about">
+					<div>
+						<div class="topColorBar"></div>
+						<h1>Helping Frontline workers connect with each other</h1>
+						<blockquote>Helping communication accross healthcare workers and 
+							providers in real time by allowing the frontline to 
+							share updates, resources and trends. This is part of 
+							the Can't Stop Columbus Project.</blockquote>
+						<button id="applyBtn">Try the App</button>
+				<!--Connecting Communities section for large screen only-->
+						<h3>Connecting Communities</h3>
+						<ul class="comGrid">
+							<li>Certified Nurse Practitioners</li>
+							<li>EMS</li>
+							<li>Social Workers & Therapists</li>
+							<li>Hospital Administrators</li>
+							<li>Hospitalists</li>
+							<li>Nurse Assistants</li>
+							<li>Nurses' Aides</li>
+							<li>Off-Topic</li>
+							<li>
+								<a href="./docs/communities">View full list</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section id="sectOne">
+					<div class="current">
+						<div>
+							<img id="imgComm" src="./docs/images/CommunicationIcon.png" id="commsIconImg">
+						</div>
+						<div>
+							<h2>Current Situation</h2>
+							<p>Communication across social workers and healthcare providers in real time 
+								is limited. There are communication limitations between different hospital 
+								systems as well as within the hospitals themselves. Different groups such 
+								as doctors, nurses, social workers, etc do not have easy ways to share 
+								information with each other. 
+							</p>
+						</div>
+					</div>
+				</section>
+				<section id="sectTwo">
+					<div>
+						<div class="midColorBar"></div><!--invisible in mobile view-->
+						<div class="solution">
+							<div>
+								<img id="imgGood" src="./docs/images/GoodCommunication.png" id="commsImg">
+							</div>	
+							<div>
+								<h2>Proposed Solution</h2>
+								<p>A Slack-like chat solution along with some type of organizing 
+									function for those on the front line to share updates on what 
+									they are seeing would be very valuable. Wouldn't be able to 
+									share sensitive information of course, a tool to share resources 
+									and trends and building a community of encouragement would be 
+									appreciated. 
+								</p>
+							<div>
+						</div>
+						<button a href=" https://forms.gle/Wj6QBGU9NBcyrkSK6" id="testAppBtn">Try the app</button>
+					</div>
+				</section>
+				<section id="sectThree">
+					<div class="mattermost">
+						<div>
+							<img id="mmlogo" src="./docs/images/icon.png">
+						</div>
+						<div>
+							<h2>Mattermost Highlights</h2>
+							<p>Mattermost is an open source Slack alternative. Communicate 
+								seamlessly through organized conversations in teams and 
+								channels. This tool has fully searchable message history, 
+								1-on-1 and group messaging, voice, video, and screen sharing 
+								as well as file, image, and link sharing.
+
+							</p>
+						</div>
+					</div>
+				</section>
+				<section id="sectFour">
+					<div>
+						<h2 class="h2Variation">Contact Us</h2>
+						<p>If you are interested in trying out the tool, please let us know.</p>
+						<a href="mailto:info@frontlineinfo.com">info@frontilneinfo.com</a>
+					</div>
+				</section>
+				<div id="bottomBar"></div><!--invisible in mobile view-->
+			</div>
+		</main>
+		<footer>
+			<div class="footgrid">
+				<div>
+					<img src="./docs/images/TheFrontLineLogo_transparent.png" id="logoImg">
+				</div>
+				<ul class="footLinks"><!--all placeholder links-->
+					<li><a href="./docs/mattermostAbout">About Mattermost</a></li>
+					<li><a href="./docs/privacy">Privacy</a></li>
+					<li><a href="./docs/terms">Terms of Service</a></li>
+					<li><a href="./docs/help">Help & FAQ</a></li>
+					<li><a href="mailto:info@frontlineinfo.com">Contact Us</a></li>
+				</ul>
+			</div>
+			<img src="./docs/images/cscbus_logo_square.svg" id="cscLogoImg">
+		</footer>
+		<script src="./docs/nav.js"></script>
+	</body>
+</html>
