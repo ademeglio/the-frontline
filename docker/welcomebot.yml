@@ -1,7 +1,7 @@
 "com.mattermost.welcomebot": {
     "welcomemessages": [
         {
-            "TeamName": "test",
+            "TeamName": "central-ohio",
             "DelayInSeconds": 5,
             "Message": [
                 "### Welcome {{.UserDisplayName}} to the Frontline {{.Team.DisplayName}} team!",
