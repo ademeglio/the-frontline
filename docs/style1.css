@@ -171,6 +171,7 @@ header {
     color: var(--cscGrey);
 }
 
+
 /* OPEN MENU FUNCTIONALITY */
 .nav.show {
     display: block;
@@ -236,6 +237,11 @@ header {
         background-color: white;
         border-bottom: 5px solid var(--cscPurple);
     }
+    
+    .nav > a:active {
+        text-decoration: none;
+        color: var(--cscPurple);
+    }
 
     .logo {
         max-width: 215px;
@@ -286,6 +292,11 @@ header {
     .nav >a:hover {
         background-color: white;
         border-bottom: 5px solid var(--cscPurple);
+    }
+    
+    a.currentLink:link, a.currentLink:visited {
+        text-decoration: none;
+        color: var(--cscPurple);
     }
 
     .logo {
@@ -348,9 +359,8 @@ section > div > element {
         padding-bottom: 65px;
     }
     .container > section > div {
-        margin-left: 10%; 
-        margin-right: 10%;
-        padding: 10px; 
+        /*margin: 10% 50px;
+        padding: 10px;*/
     }
 
     #about, #sectTwo {
@@ -388,7 +398,7 @@ section > div > element {
         display: grid;
         grid-template-columns: 1fr 1fr;
         justify-content: center;
-        margin: 15% 50px;
+        /*margin: 15% 30px;*/
     }
     
     .midColorBar {
@@ -400,6 +410,10 @@ section > div > element {
     #mmlogo {
         max-height: 200px;
         max-width: 200px;
+    }
+
+    #mmlogo, #commsIconImg, #commsImg {
+        margin-top: 50px;
     }
 }    
 /*footer*/
