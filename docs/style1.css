@@ -266,8 +266,12 @@ header {
 
     #main-nav {
         top: 50px;
-        right: 20px;
+        right: 15%;
         left: 30%;
+        padding-right: 15%;
+        background-color: white;
+    }
+
     }
 
     #menu-bars-container{
@@ -312,6 +316,9 @@ header {
     display: inline-block;
     padding-top: 100px;
     background-color: white;
+}
+#about {
+    padding-top: 150px;
 }
 
 section > div {
@@ -358,10 +365,6 @@ section > div > element {
         padding: 65px;
         padding-bottom: 65px;
     }
-    .container > section > div {
-        /*margin: 10% 50px;
-        padding: 10px;*/
-    }
 
     #about, #sectTwo {
         background-color: white;
@@ -396,11 +399,16 @@ section > div > element {
     
     .current, .solution, .mattermost {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 40% 60%;
         justify-content: center;
-        /*margin: 15% 30px;*/
     }
-    
+    #about > div > button {
+margin: 50px 40%;
+    }
+
+    section > div > div > p {
+        padding-right: 50px;
+    }
     .midColorBar {
         height: 22px;
         background-color: var(--cscTeal);
@@ -413,7 +421,7 @@ section > div > element {
     }
 
     #mmlogo, #commsIconImg, #commsImg {
-        margin-top: 50px;
+        margin-top: 0px;
     }
 }    
 /*footer*/
