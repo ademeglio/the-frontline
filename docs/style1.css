@@ -14,7 +14,7 @@
     --ltGrey: rgb(242,242,242);
 }
 
-h1, h2, h3{
+h1, h2, h3, h4{
     font-weight: 900;
     color: var(--cscPurple);
 }
@@ -25,6 +25,11 @@ h1 {
 h3 {
     font-size: 25px;
     font-weight: 400
+}
+
+h4 {
+    margin-top: 1em;
+    margin-bottom: .5em;
 }
 
 .comGrid > div{
@@ -40,6 +45,16 @@ ul {
 
 li {
     font-size: 20px;
+}
+
+#terms-and-conditions ul {
+    list-style-type: circle;
+}
+
+#terms-and-conditions li {
+    font-size: 17px;
+    padding-top: .5em;
+    margin-left: 40px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -112,6 +127,7 @@ header {
 }
 
 .menu-container {
+    display: block;
     padding: 30px;
     text-align: right;
     width: 100%;
@@ -130,6 +146,7 @@ header {
 }
 
 .hamBar {
+    display: block;
     width: 30px;
     height: 7px;
     margin: 4px 0;
@@ -137,33 +154,36 @@ header {
 }
 
 #main-nav {
+    height:0;
     overflow: hidden;
     position: absolute;
     width: 100%;
     top: 150px;
-    left:0; 
-    background-color: var(--cscPurple);
+    left: 0;
+    margin: 10px;
 }
 
 #main-nav > div > {
+    background-color: white;
     width: 100%;
-    margin: 25px;
+    box-shadow: 0 0 1px var(--cscGrey);
 }
 
 .nav > a {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
+    display: block;
+    text-align: center;
     font-size: 20px;
     text-decoration: none;
     color: black;
     padding: 10px 16px;
     width: 100%;
-    background-color: white;
+
+    background-color: var(--ltGrey);
+    border-bottom: var(--cscGrey) solid 2px;
 }
 
-.nav > a:hover {
-    background-color: var(--ltGrey);
+.nav > a:hover, .nav > a:focus {
+    color: var(--cscPurple);
 }
 
 .nav > a:visited {
@@ -172,9 +192,10 @@ header {
 }
 
 /* OPEN MENU FUNCTIONALITY */
-.nav.show {
+
+/*.nav.show {
     display: block;
-}
+}*/
 
 .show #bar1 {
     -webkit-transform: rotate(-45deg) translate(-12px, 6px);
@@ -190,7 +211,7 @@ header {
     transform: rotate(45deg) translate(-5px, -8px);
 }
 
-.show #main-nav > ul {
+.show #main-nav > div {
     height: 20em;
 }
 
@@ -211,8 +232,6 @@ header {
         top: 140px;
     }
 
-
-
     #menu-bars-container{
         display: none;
     }
@@ -230,11 +249,17 @@ header {
     .nav > a {
         margin-left: 15px;
         font-size: 17px;
+        background-color: white;
     }
 
     .nav >a:hover {
         background-color: white;
         border-bottom: 5px solid var(--cscPurple);
+    }
+    
+    .nav > a:active {
+        text-decoration: none;
+        color: var(--cscPurple);
     }
 
     .logo {
@@ -260,8 +285,10 @@ header {
 
     #main-nav {
         top: 50px;
-        right: 20px;
+        right: 15%;
         left: 30%;
+        padding-right: 15%;
+        background-color: white;
     }
 
     #menu-bars-container{
@@ -273,19 +300,27 @@ header {
     }
 
     .nav {
-        display: flex;
+        display: block;
         background-color: white;
         right: 0;
     }
 
     .nav > a {
+        display: inline;
         margin-left: 15px;
         font-size: 17px;
+        background-color: white;
+        color: var(--cscGrey);
     }
 
     .nav >a:hover {
         background-color: white;
         border-bottom: 5px solid var(--cscPurple);
+    }
+    
+    a.currentLink:link, a.currentLink:visited {
+        text-decoration: none;
+        color: var(--cscPurple);
     }
 
     .logo {
@@ -301,6 +336,9 @@ header {
     display: inline-block;
     padding-top: 100px;
     background-color: white;
+}
+#about {
+    padding-top: 150px;
 }
 
 section > div {
@@ -319,6 +357,10 @@ section {
 
 section > div > element {
     margin: 0 20px;
+}
+
+#about > div > button {
+    margin: 50 25%;
 }
 
 #sectOne, #sectThree {
@@ -346,11 +388,6 @@ section > div > element {
     .container > section {
         padding: 65px;
         padding-bottom: 65px;
-    }
-    .container > section > div {
-        margin-left: 10%; 
-        margin-right: 10%;
-        padding: 10px; 
     }
 
     #about, #sectTwo {
@@ -386,11 +423,16 @@ section > div > element {
     
     .current, .solution, .mattermost {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 40% 60%;
         justify-content: center;
-        margin: 15% 50px;
     }
-    
+    #about > div > button {
+margin: 50px 40%;
+    }
+
+    section > div > div > p {
+        padding-right: 50px;
+    }
     .midColorBar {
         height: 22px;
         background-color: var(--cscTeal);
@@ -400,6 +442,10 @@ section > div > element {
     #mmlogo {
         max-height: 200px;
         max-width: 200px;
+    }
+
+    #mmlogo, #commsIconImg, #commsImg {
+        margin-top: 0px;
     }
 }    
 /*footer*/
