@@ -144,7 +144,8 @@ header {
     position: absolute;
     width: 100%;
     top: 150px;
-    left:0; 
+    left: 0;
+    margin: 10px;
 }
 
 #main-nav > div > {
@@ -155,7 +156,7 @@ header {
 
 .nav > a {
     display: block;
-    justify-content: center;
+    text-align: center;
     font-size: 20px;
     text-decoration: none;
     color: black;
@@ -163,12 +164,11 @@ header {
     width: 100%;
 
     background-color: var(--ltGrey);
-    border-bottom-color: var(--cscGrey);
-    border-bottom-width: 3px;
+    border-bottom: var(--cscGrey) solid 2px;
 }
 
-.nav > a:hover {
-    border-bottom-color: var(--cscPurple);
+.nav > a:hover, .nav > a:focus {
+    color: var(--cscPurple);
 }
 
 .nav > a:visited {
