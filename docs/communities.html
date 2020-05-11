@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type = "text/css" href="./style1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<header>
+			<div class="topBar">
+				<div class="logo">
+					<img src="./images/LogoSmall.png" id="logoImg">
+				</div>
+						<!--nav button for mobile view only-->
+				<div id="nav-container">
+					<div class="menu-container">
+						<div id="menu-bars-container" onclick="toggleMenu(this)">
+							<div class="hamBar" id="bar1"></div>
+							<div class="hamBar" id="bar2"></div>
+							<div class="hamBar" id="bar3"></div>
+						</div>
+						<!-- top nav for large screen only -->
+						<div id="main-nav">
+							<div class = nav>
+								<a href="./apply.html">Apply Now</a>
+								<a href="./privacy.html">Privacy</a>
+								<a href="./help.html" class="currentLink">Help & FAQ</a>
+								<a href="./terms.html">Terms of Service</a>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</header>
+		<main>
+            <section id="communities">
+			    <h2>Communities</h2>
+			</section>
+			<section id="topics">
+				<h2>Topics</h2>
+			</section>
+		</main>
+		<footer>
+			<div class="footgrid">
+				<div>
+					<img src="./images/TheFrontLineLogo_transparent.png" id="logoImg">
+				</div>
+				<ul class="footLinks"><!--all placeholder links-->
+					<li><a href="./about">About</a></li>
+					<li><a href="./privacy">Privacy</a></li>
+					<li><a href="./terms">Terms of Service</a></li>
+					<li><a href="./help">Help & FAQ</a></li>
+					<li><a href="mailto:info@frontlineinfo.com" target="_blank">Contact Us</a></li>
+				</ul>
+			</div>
+			<img src="./images/cscbus_logo_square.svg" id="cscLogoImg">
+		</footer>
+		<script src="./nav.js"></script>
+	</body>
+</html>
