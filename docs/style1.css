@@ -112,6 +112,7 @@ header {
 }
 
 .menu-container {
+    display: block;
     padding: 30px;
     text-align: right;
     width: 100%;
@@ -130,6 +131,7 @@ header {
 }
 
 .hamBar {
+    display: block;
     width: 30px;
     height: 7px;
     margin: 4px 0;
@@ -146,14 +148,14 @@ header {
 }
 
 #main-nav > div > {
+    background-color: white;
     width: 100%;
     box-shadow: 0 0 1px var(--cscGrey);
 }
 
 .nav > a {
-    display: flex;
+    display: block;
     justify-content: center;
-    margin: 10px;
     font-size: 20px;
     text-decoration: none;
     color: black;
@@ -162,7 +164,7 @@ header {
 
     background-color: var(--ltGrey);
     border-bottom-color: var(--cscGrey);
-    border-bottom-width: 2px;
+    border-bottom-width: 3px;
 }
 
 .nav > a:hover {
@@ -274,8 +276,6 @@ header {
         background-color: white;
     }
 
-    }
-
     #menu-bars-container{
         display: none;
     }
@@ -285,15 +285,17 @@ header {
     }
 
     .nav {
-        display: flex;
+        display: block;
         background-color: white;
         right: 0;
     }
 
     .nav > a {
+        display: inline;
         margin-left: 15px;
         font-size: 17px;
         background-color: white;
+        color: var(--cscGrey);
     }
 
     .nav >a:hover {
