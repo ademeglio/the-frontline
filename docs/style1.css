@@ -137,17 +137,17 @@ header {
 }
 
 #main-nav {
+    height:0;
     overflow: hidden;
     position: absolute;
     width: 100%;
     top: 150px;
     left:0; 
-    background-color: var(--cscPurple);
 }
 
 #main-nav > div > {
     width: 100%;
-    margin: 25px;
+    box-shadow: 0 0 1px var(--cscGrey);
 }
 
 .nav > a {
@@ -159,11 +159,14 @@ header {
     color: black;
     padding: 10px 16px;
     width: 100%;
-    background-color: white;
+
+    background-color: var(--ltGrey);
+    border-bottom-color: var(--cscGrey);
+    border-bottom-width: 2px;
 }
 
 .nav > a:hover {
-    background-color: var(--ltGrey);
+    border-bottom-color: var(--cscPurple);
 }
 
 .nav > a:visited {
@@ -171,11 +174,11 @@ header {
     color: var(--cscGrey);
 }
 
-
 /* OPEN MENU FUNCTIONALITY */
-.nav.show {
+
+/*.nav.show {
     display: block;
-}
+}*/
 
 .show #bar1 {
     -webkit-transform: rotate(-45deg) translate(-12px, 6px);
@@ -191,7 +194,7 @@ header {
     transform: rotate(45deg) translate(-5px, -8px);
 }
 
-.show #main-nav > ul {
+.show #main-nav > div {
     height: 20em;
 }
 
@@ -212,8 +215,6 @@ header {
         top: 140px;
     }
 
-
-
     #menu-bars-container{
         display: none;
     }
@@ -231,6 +232,7 @@ header {
     .nav > a {
         margin-left: 15px;
         font-size: 17px;
+        background-color: white;
     }
 
     .nav >a:hover {
@@ -291,6 +293,7 @@ header {
     .nav > a {
         margin-left: 15px;
         font-size: 17px;
+        background-color: white;
     }
 
     .nav >a:hover {
@@ -337,6 +340,10 @@ section {
 
 section > div > element {
     margin: 0 20px;
+}
+
+#about > div > button {
+    margin: 50 25%;
 }
 
 #sectOne, #sectThree {
