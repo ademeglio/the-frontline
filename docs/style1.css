@@ -160,7 +160,7 @@ header {
 }
 
 #main-nav {
-    height:3em;
+    height:40px;
     overflow: hidden;
     position: absolute;
     width: 100%;
