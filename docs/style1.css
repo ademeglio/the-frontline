@@ -47,6 +47,16 @@ li {
     font-size: 20px;
 }
 
+#terms-and-conditions ul {
+    list-style-type: circle;
+}
+
+#terms-and-conditions li {
+    font-size: 17px;
+    padding-top: .5em;
+    margin-left: 40px;
+}
+
 @media only screen and (min-width: 768px) {
     h1 {
         font-size: 38px;
