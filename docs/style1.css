@@ -234,6 +234,7 @@ header {
     }
 
     #main-nav {
+        height: 40px;
         top: 140px;
     }
 
@@ -289,6 +290,7 @@ header {
     }
 
     #main-nav {
+        height: 40px;
         top: 50px;
         right: 15%;
         left: 30%;
