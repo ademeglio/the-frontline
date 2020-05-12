@@ -160,13 +160,12 @@ header {
 }
 
 #main-nav {
-    height:40px;
+    height:0px;
     overflow: hidden;
     position: absolute;
     width: 100%;
     top: 150px;
     left: 0;
-    margin: 10px;
 }
 
 #main-nav > div > {
@@ -344,8 +343,9 @@ header {
     padding-top: 100px;
     background-color: white;
 }
+
 #about {
-    padding-top: 150px;
+    padding-top: 50px;
 }
 
 section > div {
