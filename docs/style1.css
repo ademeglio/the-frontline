@@ -465,7 +465,7 @@ margin: 50px 40%;
 
 footer {
     border-top: 22px solid var(--cscTeal);
-    padding: 20px;
+    padding: 50px 20px 100px 20px;
     background-color: var(--ltGrey);
 }
 
@@ -482,7 +482,6 @@ footer {
 #cscLogoImg {
     display: block;
     position: relative;
-    padding: 40px;
     max-height: 80px;
     max-width: 80px;
     float: right;
