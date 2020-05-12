@@ -160,13 +160,12 @@ header {
 }
 
 #main-nav {
-    height:40px;
+    height:0px;
     overflow: hidden;
     position: absolute;
     width: 100%;
     top: 150px;
     left: 0;
-    margin: 10px;
 }
 
 #main-nav > div > {
@@ -235,6 +234,7 @@ header {
     }
 
     #main-nav {
+        height: 40px;
         top: 140px;
     }
 
@@ -290,6 +290,7 @@ header {
     }
 
     #main-nav {
+        height: 40px;
         top: 50px;
         right: 15%;
         left: 30%;
@@ -339,12 +340,14 @@ header {
 /*!!!main styling for mobile devices!!!*/
 
 .container {
+    width: 100%;
     display: inline-block;
     padding-top: 100px;
     background-color: white;
 }
+
 #about {
-    padding-top: 150px;
+    padding-top: 50px;
 }
 
 section > div {
@@ -462,7 +465,7 @@ margin: 50px 40%;
 
 footer {
     border-top: 22px solid var(--cscTeal);
-    padding: 20px;
+    padding: 50px 20px 100px 20px;
     background-color: var(--ltGrey);
 }
 
@@ -479,7 +482,6 @@ footer {
 #cscLogoImg {
     display: block;
     position: relative;
-    padding: 40px;
     max-height: 80px;
     max-width: 80px;
     float: right;
