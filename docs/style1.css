@@ -339,6 +339,7 @@ header {
 /*!!!main styling for mobile devices!!!*/
 
 .container {
+    width: 100%;
     display: inline-block;
     padding-top: 100px;
     background-color: white;
