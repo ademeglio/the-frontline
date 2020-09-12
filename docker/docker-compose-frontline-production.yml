@@ -63,7 +63,7 @@ services:
   
 # Mattermost Application. Use official Mattermost prod-app image
   mm-app:
-    image: mattermost/mattermost-prod-app:5.22.0
+    image: mattermost/mattermost-prod-app:5.26.1
 
     environment: 
       DB_HOST: frontline_mm-db
